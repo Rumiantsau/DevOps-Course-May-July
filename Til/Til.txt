@@ -8,3 +8,5 @@
 
 ## 02/06  
 + Waiting for the next lesson  
++ The second lesson took place today. The topic of the lesson was: "DevOps in the company team
+CI / CD - definition and basic tooling"  
