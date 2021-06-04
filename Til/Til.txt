@@ -13,3 +13,6 @@ CI / CD - definition and basic tooling"
 
 ## 03/06
 + set up a virtual machine with debian 10 to write a python application
+
+## 04/06
++ today I wanted to do a lot of things, but nothing worked
