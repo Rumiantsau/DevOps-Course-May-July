@@ -16,3 +16,9 @@ CI / CD - definition and basic tooling"
 
 ## 04/06
 + today I wanted to do a lot of things, but nothing worked
+
+## 07/06
++ Trying to understand hometask. Investigate script output step by step.
+
+## 08/06
++ Starting investigate bash input/output interrupt.
