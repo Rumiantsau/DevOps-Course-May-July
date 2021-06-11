@@ -25,3 +25,9 @@ CI / CD - definition and basic tooling"
 
 ## 09/06
 + The fourth lesson took place today. Got a new homework, continue to do the previous one....
+
+## 10/06
++ Writing script base
+
+## 11/06
++ Writing script without user checking
