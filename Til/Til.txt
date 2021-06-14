@@ -31,3 +31,6 @@ CI / CD - definition and basic tooling"
 
 ## 11/06
 + Writing script without user checking
+
+## 14/06
++ Finished script. Implemented one aditional task
