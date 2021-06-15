@@ -34,3 +34,6 @@ CI / CD - definition and basic tooling"
 
 ## 14/06
 + Finished script. Implemented one aditional task
+
+## 15/06
++ Start implementing task number #1
