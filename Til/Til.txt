@@ -37,3 +37,6 @@ CI / CD - definition and basic tooling"
 
 ## 15/06
 + Start implementing task number #1
+
+## 16/06
++ Started creating a telegram bot. Update file "README.md". Started creating a script for task #4. 
