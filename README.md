@@ -6,9 +6,9 @@ Andersen DevOps Course Summer 2021 by [Andersenlab](https://www.andersenlab.com/
 We will need Python3, Flask and emoji support.
 ### Result
 curl -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/  
-cow says moooo
-cow says moooo
-cow says moooo
+cow says moooo  
+cow says moooo  
+cow says moooo  
 Made with ❤️ by %your_name
 
 ## Task#2: Сonvert one liner to nice script
