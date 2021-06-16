@@ -1,10 +1,9 @@
 # DevOps-Course-May-July
 Andersen DevOps Course Summer 2021 by [Andersenlab](https://www.andersenlab.com/)
 
-## Task#1: Task definition:
-Create and deploy your own service 
+## Task#1: Create and deploy your own service 
+### Task definition:
 We will need Python3, Flask and emoji support.
-
 ### Result
 curl -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/
 cow says moooo
@@ -13,12 +12,10 @@ cow says moooo
 Made with ❤️ by %your_name
 
 ## Task#2: Сonvert one liner to nice script
-
 ### Task definition:
 sudo netstat -tunapl | awk '/firefox/ {print $5}' | cut -d: -f1 | sort | uniq -c | sort | tail -n5 | grep -oP '(\d+\.){3}\d+' | while read IP ; do whois $IP | awk -F':' '/^Organization/ {print $2}' ; done
 
 ## Task#3: Write a functioning telegram bot in GO language with at least 3 commands:
-
 ### Task definition:
 Executable commands
 - 'Git' - returns a numbered list of your completed tasks.
