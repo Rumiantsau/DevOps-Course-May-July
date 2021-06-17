@@ -4,14 +4,19 @@ echo "--This is script for interaction with github API--"
 echo ====================================================
 read -p "Enter the github URL (an url like "'https://github.com/$user/$repo'"): " inputURL
 
-SUB="https://github.com/"
+#SUB="https://github.com/"
+#if [[ "$inputURL" != *"https://github.com/"* ]]; then
+#echo ====================================================
+#echo "-------------Incorrect input format.--------------"
+#echo ====================================================
+#  exit 1
+#fi
 
-if [[ "$inputURL" != *"https://github.com/"* ]]; then
+re='https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+if ! [[ $inputURL =~ $re ]] ; then
 echo ====================================================
-echo "-------------Incorrect input format.--------------"
+echo "--------------Incorrect input format--------------"; exit 1
 echo ====================================================
-
-  exit 1
 fi
 
 echo "$inputURL"
@@ -49,7 +54,7 @@ function pullrequestWithLabel {
   curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .label'
 }
 
-function custom_func {
+function myFunc {
   echo "This function will show U all public repositories of user"
   username=${input_data%/*}
   echo $username
@@ -75,7 +80,7 @@ select opt in "$one" "$two" "$tree" "$four" "$five" Quit; do
      pullrequestWithLabel
       ;;
     $four)
-
+     myFunc
       ;;
     $five)
 
