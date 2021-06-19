@@ -1,0 +1,11 @@
+[Unit]
+Description=Flask server
+After=network-manager.service
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/html/
+ExecStart=/usr/bin/python3 /var/www/html/flask_app.py
+
+[Install]
+WantedBy=multi-user.target
