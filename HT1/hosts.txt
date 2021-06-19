@@ -1,0 +1,11 @@
+[webservers:vars]
+ansible_connection=ssh
+ansible_become=yes
+ansible_become_method=su
+ansible_user="{{ ssh_user }}"
+ansible_become_pass="{{ root_password }}"
+ansible_ssh_pass="{{ ssh_password }}"
+
+
+[webservers]
+X.X.X.X
