@@ -1,0 +1,93 @@
+---
+- name: Ansible installation
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add key on host
+      authorized_key:
+        user: "{{ssh_user}}"
+        key: "{{ lookup('file', '{{playbook_dir}}/key_certs/id_rsa.pub')}}"
+
+    - name: Disable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^(.*)PasswordAuthentication yes'
+        line: 'PasswordAuthentication no'
+        state: present
+
+    - name: Disable root access
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        line: PermitRootLogin no
+
+    - name: Create directory
+      file:
+        path: /var/www/html
+        state: directory
+        mode: 0775
+
+    - name: Copy app to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/app.py'
+        dest: /var/www/html
+
+    - name: Copy key to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/key_certs/key.pem'
+        dest: /var/www/html
+
+    - name: Copy cert to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/key_certs/cert.pem'
+        dest: /var/www/html
+
+    - name: Install python3-pip
+      apt:
+        name: python3-pip
+        state: latest
+
+    - name: Install flask
+      pip:
+        name: flask
+        executable: pip3
+
+    - name: Install emoji library
+      pip:
+        name: emoji
+        executable: pip3
+
+    - name: Create Flask service
+      copy:
+        src: '{{playbook_dir}}/flask-server.service'
+        dest: /etc/systemd/system/
+
+    - name: Enable Flask service on boot
+      service: 
+        name: flask-server.service
+        enabled: yes
+
+    - name: Start Flask
+      service: 
+        name: flask-server.service
+        state: started
+
+    - name: Allow connections on multiple ports
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_ports:
+          - "22"
+          - "80"
+          - "443"
+        jump: ACCEPT
+
+    - name: Set the policy for the INPUT chain to DROP
+      ansible.builtin.iptables:
+        chain: INPUT
+        policy: DROP
+      become: yes
+
+    - name: Reload service ssh
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted
