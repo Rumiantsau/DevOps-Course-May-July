@@ -49,13 +49,23 @@
     - name: Install flask
       pip:
         name: flask
-        executable: pip3
+        executable: pip
 
     - name: Install emoji library
       pip:
         name: emoji
-        executable: pip3
+        executable: pip
+    
+    - name: Install jsonify library
+      pip:
+        name: flask-jsonpify
+        executable: pip
 
+    - name: Install marshmallow library
+        pip:
+        name: marshmallow
+        executable: pip    
+        
     - name: Create Flask service
       copy:
         src: '{{playbook_dir}}/flask-server.service'
@@ -71,21 +81,21 @@
         name: flask-server.service
         state: started
 
-    - name: Allow connections on multiple ports
-      ansible.builtin.iptables:
-        chain: INPUT
-        protocol: tcp
-        destination_ports:
-          - "22"
-          - "80"
-          - "443"
-        jump: ACCEPT
+    # - name: Allow connections on multiple ports
+    #   ansible.builtin.iptables:
+    #     chain: INPUT
+    #     protocol: tcp
+    #     destination_ports:
+    #       - "22"
+    #       - "80"
+    #       - "443"
+    #     jump: ACCEPT
 
-    - name: Set the policy for the INPUT chain to DROP
-      ansible.builtin.iptables:
-        chain: INPUT
-        policy: DROP
-      become: yes
+    # - name: Set the policy for the INPUT chain to DROP
+    #   ansible.builtin.iptables:
+    #     chain: INPUT
+    #     policy: DROP
+    #   become: yes
 
     - name: Reload service ssh
       ansible.builtin.systemd:

@@ -46,4 +46,5 @@ Made with ❤️ by %your_name
 ### Requirements
 * Debian 10
 * VirtualBox VM
-* Don't forget generate ssh key pair and save it into key_certs folder.
+* Don't forget to generate ssh key pair and save it into key_certs folder. Default key file name is "id_rsa.pub"
+* Don't forget to change "<ssh_user>", "<root_password>", "<ssh_password>" into hosts.txt
