@@ -46,3 +46,4 @@ Made with ❤️ by %your_name
 ### Requirements
 * Debian 10
 * VirtualBox VM
+* Don't forget generate ssh key pair and save it into key_certs folder.
