@@ -49,9 +49,43 @@ function mostContributors {
   curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].user.login' | sort | uniq -cd
 }
 
+allUsersLogins=()
+allUsersLinks=()
+
 function pullrequestWithLabel {
   echo "Print the number of PRs each contributor has created with the labels"
-  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .label'
+echo "-----------------------------------"
+count=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].user.login' | wc -l)
+
+#echo "$count"
+
+
+allUsersLogins=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[].user.login')
+allUsersLinks=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .labels | length')
+
+#echo "$allUsersLogins"
+
+#endpoint="https://jsonplaceholder.typicode.com/comments"
+#allEmails=()
+
+# Запрашиваем первые 10 публикаций
+for id in {1..$count};
+do
+  # Выполняем обращение к API для получения электронных адресов комментаторов публикации
+#  response=$(curl "${endpoint}?postId=${postId}")
+echo "$allUsersLogins[$id] - $allUsersLinks[$id]"
+  # Используем jq для парсинга JSON и записываем в массив адреса комментаторов
+#  allEmails+=( $( jq '.[].email' <<< "$response" ) )
+done
+
+
+#echo "-----------------------------------"
+#curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .labels'
+
+#  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[].user.login'
+  echo "----------------------------------------------------------"
+
+#  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].labels | length'
 }
 
 function myFunc {
