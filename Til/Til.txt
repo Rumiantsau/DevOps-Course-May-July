@@ -43,3 +43,9 @@ CI / CD - definition and basic tooling"
 
 ## 17/06
 + Implementation task #4
+
+## 19/06
++ Implementation task #1 and task #4
+
+## 20/06
++ Task #4 - completed
