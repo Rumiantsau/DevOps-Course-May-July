@@ -58,7 +58,7 @@ function pullrequestWithLabel {
 }
 
 function myFunc {
-  echo "This function will show U all public repositories of user"
+  echo "Show U all public repositories of the 'user'"
   read -p "Write username for search: " username
   curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/${username}/repos | jq -r '.[]'
 }
@@ -66,8 +66,8 @@ function myFunc {
 one="Checks if there are open pull requests"
 two="Print the list of the most productive contributors (authors of more than 1 open PR)"
 tree="Print the number of PRs each contributor has created with the labels"
-four="My own feature ()"
-five="Ask your chat mate to review your code and create a meaningful pull request"
+four="My own function. Show U all public repositories of the 'user'"
+#five="Ask your chat mate to review your code and create a meaningful pull request"
 
 PS3="Select the required action. 1 - $one. 2 - $two. 3 - $tree. 4 - $four. 5 - Quit : "
 select opt in "$one" "$two" "$tree" "$four" Quit; do
