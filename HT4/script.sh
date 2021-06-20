@@ -4,14 +4,7 @@ echo "--This is script for interaction with github API--"
 echo ====================================================
 read -p "Enter the github URL (an url like "'https://github.com/$user/$repo'"): " inputURL
 
-#SUB="https://github.com/"
-#if [[ "$inputURL" != *"https://github.com/"* ]]; then
-#echo ====================================================
-#echo "-------------Incorrect input format.--------------"
-#echo ====================================================
-#  exit 1
-#fi
-
+# Validation of entered URL
 re='https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
 if ! [[ $inputURL =~ $re ]] ; then
 echo ====================================================
@@ -49,50 +42,25 @@ function mostContributors {
   curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].user.login' | sort | uniq -cd
 }
 
-allUsersLogins=()
-allUsersLinks=()
+#allUsersLogins=()
+#allUsersLinks=()
 
 function pullrequestWithLabel {
   echo "Print the number of PRs each contributor has created with the labels"
-echo "-----------------------------------"
-count=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].user.login' | wc -l)
-
-#echo "$count"
-
-
-allUsersLogins=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[].user.login')
-allUsersLinks=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .labels | length')
-
-#echo "$allUsersLogins"
-
-#endpoint="https://jsonplaceholder.typicode.com/comments"
-#allEmails=()
-
-# Запрашиваем первые 10 публикаций
-for id in {1..$count};
-do
-  # Выполняем обращение к API для получения электронных адресов комментаторов публикации
-#  response=$(curl "${endpoint}?postId=${postId}")
-echo "$allUsersLogins[$id] - $allUsersLinks[$id]"
-  # Используем jq для парсинга JSON и записываем в массив адреса комментаторов
-#  allEmails+=( $( jq '.[].email' <<< "$response" ) )
-done
-
-
-#echo "-----------------------------------"
-#curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .labels'
-
-#  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[].user.login'
-  echo "----------------------------------------------------------"
-
-#  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls?state=open | jq '.[].labels | length'
+  echo "-----------------------------------"
+  allUsersLogins=($(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[].user.login'))
+  allUsersLinks=($(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${inputURL}/pulls | jq '.[] | .labels | length'))
+  echo
+  for((i=0; i<${#allUsersLogins[@]};i++));
+  do
+    echo "${allUsersLogins[i]} - ${allUsersLinks[i]}"
+  done
 }
 
 function myFunc {
   echo "This function will show U all public repositories of user"
-  username=${input_data%/*}
-  echo $username
-  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/${username}/repos | jq -r '.[] | .name'
+  read -p "Write username for search: " username
+  curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/${username}/repos | jq -r '.[]'
 }
 
 one="Checks if there are open pull requests"
@@ -101,8 +69,8 @@ tree="Print the number of PRs each contributor has created with the labels"
 four="My own feature ()"
 five="Ask your chat mate to review your code and create a meaningful pull request"
 
-PS3="Select the required action: "
-select opt in "$one" "$two" "$tree" "$four" "$five" Quit; do
+PS3="Select the required action. 1 - $one. 2 - $two. 3 - $tree. 4 - $four. 5 - Quit : "
+select opt in "$one" "$two" "$tree" "$four" Quit; do
   case $opt in
     $one)
       openPullRequest
@@ -116,14 +84,11 @@ select opt in "$one" "$two" "$tree" "$four" "$five" Quit; do
     $four)
      myFunc
       ;;
-    $five)
-
-      ;;
     Quit)
       break
       ;;
     *)
-      echo "Недопустимая опция $REPLY"
+      echo "Incorrect input $REPLY"
       ;;
   esac
 done

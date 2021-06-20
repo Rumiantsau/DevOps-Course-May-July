@@ -19,3 +19,7 @@ passed to the script
 * you can use bash or python, it doesn't matter, the main thing is that it accepts a repo link argument
 * do not go to very large repo, although this is up to you
 * read about API restrictions
+
+## Using and test URL
+https://github.com/kubernetes/kubernetes
+https://github.com/hashicorp/terraform
