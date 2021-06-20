@@ -81,15 +81,15 @@
         name: flask-server.service
         state: started
 
-    # - name: Allow connections on multiple ports
-    #   ansible.builtin.iptables:
-    #     chain: INPUT
-    #     protocol: tcp
-    #     destination_ports:
-    #       - "22"
-    #       - "80"
-    #       - "443"
-    #     jump: ACCEPT
+    - name: Allow connections on multiple ports
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_ports:
+          - "22"
+          - "80"
+          - "443"
+        jump: ACCEPT
 
     # - name: Set the policy for the INPUT chain to DROP
     #   ansible.builtin.iptables:
