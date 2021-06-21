@@ -46,6 +46,11 @@
         name: python3-pip
         state: latest
 
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+
     - name: Install flask
       pip:
         name: flask
@@ -81,23 +86,27 @@
         name: flask-server.service
         state: started
 
-    - name: Allow connections on multiple ports
-      ansible.builtin.iptables:
-        chain: INPUT
-        protocol: tcp
-        destination_ports:
-          - "22"
-          - "80"
-          - "443"
-        jump: ACCEPT
-
-    # - name: Set the policy for the INPUT chain to DROP
+    # - name: Allow connections on multiple ports
     #   ansible.builtin.iptables:
     #     chain: INPUT
-    #     policy: DROP
-    #   become: yes
+    #     protocol: tcp
+    #     destination_ports:
+    #       - "22"
+    #       - "80"
+    #       - "443"
+    #     jump: ACCEPT
 
-    - name: Reload service ssh
+    - name: Copy NGINX config to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/nginx/default'
+        dest: /etc/nginx/sites-enabled/
+
+    - name: Restart service nginx
       ansible.builtin.systemd:
-        name: sshd
+        name: nginx
         state: restarted
+
+    # - name: Restart service ssh
+    #   ansible.builtin.systemd:
+    #     name: sshd
+    #     state: restarted
