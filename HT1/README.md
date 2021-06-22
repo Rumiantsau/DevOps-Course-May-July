@@ -1,5 +1,13 @@
 # HT1 implementation
 
+# Solution
+* Don't forget to generate ssh key pair and save it into key_certs folder. Default key files name are "ssh_key.pub" and "ssh_key.pem"
+* Don't forget to change <ssh_user>, <root_password>, <ssh_password> into hosts.txt. After that don't forget uncommented <path_to_key_file>.
+* Run ansible command "ansible-playbook playbook.yml -i hosts.txt"
+* Use key "-k" for curl to ignore cert issue. For example "curl -k -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/"
+
+
+# HT1 Task 
 # Ansible assignment
 ## Create and deploy your own service
 ### The development stage:
@@ -46,5 +54,3 @@ Made with ❤️ by %your_name
 ### Requirements
 * Debian 10
 * VirtualBox VM
-* Don't forget to generate ssh key pair and save it into key_certs folder. Default key file name is "id_rsa.pub"
-* Don't forget to change "<ssh_user>", "<root_password>", "<ssh_password>" into hosts.txt
