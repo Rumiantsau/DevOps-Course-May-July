@@ -1,10 +1,11 @@
-#import json
 import emoji
 from flask import Flask, request, jsonify
 from marshmallow import Schema, fields, ValidationError
+#we import waitress here.
+from waitress import serve
 
 #TODO: make config file for service
-sign = 'Made with ❤️ by MikalaiRumiantsau\n'
+sign = 'Made with LOVE by MikalaiRumiantsau\n'
 
 def findEmoji(text):
     r = emoji.emojize(':' + text + ':')
@@ -16,7 +17,7 @@ class BaseSchema(Schema):
       count = fields.Integer(required=True)
 
 app = Flask(__name__)
-
+app.debug = True
 @app.route('/', methods=['GET', 'POST'])
 def index():
     #TODO: make somethink to work with GET
@@ -44,5 +45,4 @@ def index():
     return (str+sign),200
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run(host='0.0.0.0', port = 443, ssl_context = ('cert.pem', 'key.pem'))
+   server(app, host='0.0.0.0', port=5000, url_scheme='https')

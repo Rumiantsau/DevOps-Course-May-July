@@ -3,22 +3,23 @@
   hosts: all
   become: yes
   tasks:
-    - name: Add key on host
-      authorized_key:
-        user: "{{ssh_user}}"
-        key: "{{ lookup('file', '{{playbook_dir}}/key_certs/id_rsa.pub')}}"
+    # - name: Set authorized key taken from file
+    #   ansible.posix.authorized_key:
+    #     user: {{ssh_user}}
+    #     state: present
+    #     key: "{{ lookup('file', '/home/{{ssh_user}}/.ssh/id_rsa.pub') }}"
 
-    - name: Disable password authentication
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^(.*)PasswordAuthentication yes'
-        line: 'PasswordAuthentication no'
-        state: present
+    # - name: Disable password authentication
+    #   lineinfile:
+    #     path: /etc/ssh/sshd_config
+    #     regexp: '^(.*)PasswordAuthentication yes'
+    #     line: 'PasswordAuthentication no'
+    #     state: present
 
-    - name: Disable root access
-      ansible.builtin.lineinfile:
-        path: /etc/ssh/sshd_config
-        line: PermitRootLogin no
+    # - name: Disable root access
+    #   ansible.builtin.lineinfile:
+    #     path: /etc/ssh/sshd_config
+    #     line: PermitRootLogin no
 
     - name: Create directory
       file:
@@ -31,45 +32,54 @@
         src: '{{playbook_dir}}/app.py'
         dest: /var/www/html
 
-    - name: Copy key to host
-      ansible.builtin.copy:
-        src: '{{playbook_dir}}/key_certs/key.pem'
-        dest: /var/www/html
-
-    - name: Copy cert to host
-      ansible.builtin.copy:
-        src: '{{playbook_dir}}/key_certs/cert.pem'
-        dest: /var/www/html
-
     - name: Install python3-pip
       apt:
         name: python3-pip
         state: latest
+
+    - name: Run python3 as default
+      ansible.builtin.command:
+        cmd: update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
 
     - name: Install nginx
       apt:
         name: nginx
         state: latest
 
+    - name: Install curl
+      apt:
+        name: curl
+        state: latest
+
+    - name: Copy key to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/key_certs/nginx-selfsigned.key'
+        dest: /etc/ssl/private/
+
+    - name: Copy cert to host
+      ansible.builtin.copy:
+        src: '{{playbook_dir}}/key_certs/nginx-selfsigned.crt'
+        dest: /etc/ssl/certs/        
+
     - name: Install flask
       pip:
         name: flask
-        executable: pip
+        executable: pip3
 
     - name: Install emoji library
       pip:
         name: emoji
-        executable: pip
-    
-    - name: Install jsonify library
-      pip:
-        name: flask-jsonpify
-        executable: pip
+        executable: pip3
 
     - name: Install marshmallow library
-        pip:
+      pip:
         name: marshmallow
-        executable: pip    
+        executable: pip3
+
+    - name: Install waitress library
+      pip:
+        name: waitress 
+        executable: pip3
         
     - name: Create Flask service
       copy:
@@ -85,16 +95,6 @@
       service: 
         name: flask-server.service
         state: started
-
-    # - name: Allow connections on multiple ports
-    #   ansible.builtin.iptables:
-    #     chain: INPUT
-    #     protocol: tcp
-    #     destination_ports:
-    #       - "22"
-    #       - "80"
-    #       - "443"
-    #     jump: ACCEPT
 
     - name: Copy NGINX config to host
       ansible.builtin.copy:
