@@ -7,7 +7,7 @@
     #   ansible.posix.authorized_key:
     #     user: {{ssh_user}}
     #     state: present
-    #     key: "{{ lookup('file', '/home/{{ssh_user}}/.ssh/id_rsa.pub') }}"
+    #     key: "{{ lookup('file', '.key_certs/ssh_key.pub') }}"
 
     # - name: Disable password authentication
     #   lineinfile:
@@ -105,7 +105,7 @@
       ansible.builtin.systemd:
         name: nginx
         state: restarted
-
+    
     # - name: Restart service ssh
     #   ansible.builtin.systemd:
     #     name: sshd
