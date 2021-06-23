@@ -4,7 +4,8 @@
 * Default key pair files stored into key_certs folder and named are "id_rsa.pub" and "id_rsa".
 * Don't forget to change <ssh_user>, <root_password>, <ssh_password>, <path_to_key_file_into_key_certs_folder> into hosts.txt.
 * Run ansible command "ansible-playbook playbook.yml -i hosts.txt".
-* Use key "-k" for curl to ignore cert issue. For example "curl -k -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/".
+* Use key "-k" for curl to ignore cert issue. 
+For example "curl -k -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' https://myvm.localhost/".
 
 
 # HT1 Task 
