@@ -7,5 +7,5 @@ Additional challenge:
 - For AWS EC2 add the AutoRecovery option;
 - Write a wrapper script and add the ability to run different Envs with different parameters
 
-https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/HT6/2021-06-23_16-03-10.png
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/HT6/2021-06-23_16-03-10.png)
 
