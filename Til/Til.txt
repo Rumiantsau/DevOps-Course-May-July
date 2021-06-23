@@ -53,3 +53,9 @@ CI / CD - definition and basic tooling"
 ## 21/06
 + Seventh lesson. "Infrastructure as Code concept Terraform, AWS CloudFormation, Azure Resource Manager,
 Google Cloud Deployment Manager (in a cloud context)".
+
+## 22-23/06
++ Intensive work on task #1
+
+## 23/06
++ Task #1 - compleded
