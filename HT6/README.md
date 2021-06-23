@@ -1,0 +1,1 @@
+## Task#6: Optional homework (AWS). Deadline - 20/07/2021
