@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Deploy key
-        authorized_key:
+      authorized_key:
         user: "{{ansible_user}}"
         key: "{{ lookup('file', '{{playbook_dir}}/key_certs/id_rsa.pub')}}"
 
