@@ -1,10 +1,10 @@
 # HT1 implementation
 
 # Solution
-* Don't forget to generate ssh key pair and save it into key_certs folder. Default key files name are "ssh_key.pub" and "ssh_key.pem"
-* Don't forget to change <ssh_user>, <root_password>, <ssh_password> into hosts.txt. After that don't forget uncommented <path_to_key_file>.
-* Run ansible command "ansible-playbook playbook.yml -i hosts.txt"
-* Use key "-k" for curl to ignore cert issue. For example "curl -k -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/"
+* Default key pair files stored into key_certs folder and named are "id_rsa.pub" and "id_rsa".
+* Don't forget to change <ssh_user>, <root_password>, <ssh_password>, <path_to_key_file_into_key_certs_folder> into hosts.txt.
+* Run ansible command "ansible-playbook playbook.yml -i hosts.txt".
+* Use key "-k" for curl to ignore cert issue. For example "curl -k -XPOST -d'{"animal":"cow", "sound":"moooo", "count": 3}' http://myvm.localhost/".
 
 
 # HT1 Task 

@@ -3,23 +3,34 @@
   hosts: all
   become: yes
   tasks:
-    # - name: Set authorized key taken from file
-    #   ansible.posix.authorized_key:
-    #     user: {{ssh_user}}
-    #     state: present
-    #     key: "{{ lookup('file', '.key_certs/ssh_key.pub') }}"
+    - name: Deploy key
+        authorized_key:
+        user: "{{ansible_user}}"
+        key: "{{ lookup('file', '{{playbook_dir}}/key_certs/id_rsa.pub')}}"
 
-    # - name: Disable password authentication
-    #   lineinfile:
-    #     path: /etc/ssh/sshd_config
-    #     regexp: '^(.*)PasswordAuthentication yes'
-    #     line: 'PasswordAuthentication no'
-    #     state: present
+    - name: Disallow password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^(.*)PasswordAuthentication yes'
+        line: 'PasswordAuthentication no'
+        state: present
 
-    # - name: Disable root access
-    #   ansible.builtin.lineinfile:
-    #     path: /etc/ssh/sshd_config
-    #     line: PermitRootLogin no
+    - name: Disable root access via ssh
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        line: PermitRootLogin no
+
+    - name: Disable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^(.*)PasswordAuthentication yes'
+        line: 'PasswordAuthentication no'
+        state: present
+
+    - name: Disable root access via ssh
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        line: PermitRootLogin no
 
     - name: Create directory
       file:
@@ -49,6 +60,11 @@
     - name: Install curl
       apt:
         name: curl
+        state: latest
+    
+    - name: Install ufw
+      apt:
+        name: ufw
         state: latest
 
     - name: Copy key to host
@@ -101,12 +117,28 @@
         src: '{{playbook_dir}}/nginx/default'
         dest: /etc/nginx/sites-enabled/
 
+    - name: UFW block incoming
+      ufw:
+        default: deny
+        direction: incoming
+
+    - name: UFW allow outgoing
+      ufw:
+        default: allow
+        direction: outgoing
+
+    - name: UFW allow ssh, http, https
+      ufw:
+        rule: allow
+        port: 22,80,443
+        proto: tcp
+
     - name: Restart service nginx
       ansible.builtin.systemd:
         name: nginx
         state: restarted
     
-    # - name: Restart service ssh
-    #   ansible.builtin.systemd:
-    #     name: sshd
-    #     state: restarted
+    - name: Restart service ssh
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted
