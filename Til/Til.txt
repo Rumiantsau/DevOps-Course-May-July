@@ -59,3 +59,9 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 23/06
 + Task #1 - compleded
+
+## 24/06
++ Day without Andersen's homework
+
+## 25/06
++ Started doing a docker job
