@@ -65,3 +65,4 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 25/06
 + Started doing a docker job
++ Task#5 - finished
