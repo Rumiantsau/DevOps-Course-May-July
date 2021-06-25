@@ -1,4 +1,9 @@
 ## Task#5: Build a docker container for your python app. Deadline - 28/06/2021
+
+### Result
+* build image "docker build -t python_app ."
+* run container "docker run -d -p 8080:8080 --name python_app python_app:latest"
+
 ### Task definition:
 - package your Python application into a minimal size docker container;
 - write a README.md explaining how to create and run a container.
@@ -21,3 +26,4 @@
 * [Jessie Frazelle blog/links to talks](https://blog.jessfraz.com/post/talks/#2018)
 * [Jessie Frazelle dockerfiles repo](https://github.com/jessfraz/dockerfiles)
 * [random guys, bocker project](https://github.com/p8952/bocker)
+
