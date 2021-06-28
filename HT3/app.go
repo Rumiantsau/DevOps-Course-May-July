@@ -110,18 +110,26 @@ conf := getargs()
 			case "task":
 				taskArgs := update.Message.CommandArguments()
 				tasks := getTasks(conf)
-				inputNum, err := strconv.Atoi(taskArgs)
-				if err != nil {
+				
+			inputNum, err := strconv.Atoi(taskArgs)
+			
+			if err != nil {
 					// handle error
-					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Got error task number: "+taskArgs)
+					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Input Error. Please, input number.")
 					bot.Send(msg)
 				}
-				if inputNum > 0 {
-					taskUrl := fmt.Sprintf("https://github.com/%s/%s/tree/main/%s", conf.Name, conf.Reponame, tasks[inputNum-1])
-					msg := tgbotapi.NewMessage(update.Message.Chat.ID, taskUrl)
+	
+				if inputNum > 0 { 
+					if inputNum <= len(tasks) { // nested if statement
+						// fmt.Println("yes")
+					} else { 
+					str := fmt.Sprintf("The value must be in the range from 1 to %d", len(tasks))
+					msg := tgbotapi.NewMessage(update.Message.Chat.ID, str)
 					bot.Send(msg)
-				} else {
-					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Got error task number: "+taskArgs)
+					}
+				} else { 
+				    str := fmt.Sprintf("The value must be in the range from 1 to %d", len(tasks))
+				    msg := tgbotapi.NewMessage(update.Message.Chat.ID, str)
 					bot.Send(msg)
 				}
 			}
