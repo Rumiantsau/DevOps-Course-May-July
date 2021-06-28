@@ -66,3 +66,9 @@ Google Cloud Deployment Manager (in a cloud context)".
 ## 25/06
 + Started doing a docker job
 + Task#5 - finished
+
+## 26/06
++ Rested on the river
+
+## 27/06
++ Continued to solve the task#3 (tg-bot)
