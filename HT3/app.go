@@ -120,8 +120,7 @@ conf := getargs()
 				}
 	
 				if inputNum > 0 { 
-					if inputNum <= len(tasks) { // nested if statement
-						// fmt.Println("yes")
+					if inputNum <= len(tasks) { 
 					} else { 
 					str := fmt.Sprintf("The value must be in the range from 1 to %d", len(tasks))
 					msg := tgbotapi.NewMessage(update.Message.Chat.ID, str)
