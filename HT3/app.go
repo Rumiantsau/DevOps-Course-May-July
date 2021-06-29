@@ -121,6 +121,9 @@ conf := getargs()
 	
 				if inputNum > 0 { 
 					if inputNum <= len(tasks) { 
+						taskUrl := fmt.Sprintf("https://github.com/%s/%s/tree/main/%s", conf.Name, conf.Reponame, tasks[inputNum-1])
+                        msg := tgbotapi.NewMessage(update.Message.Chat.ID, taskUrl)
+                        bot.Send(msg)
 					} else { 
 					str := fmt.Sprintf("The value must be in the range from 1 to %d", len(tasks))
 					msg := tgbotapi.NewMessage(update.Message.Chat.ID, str)
