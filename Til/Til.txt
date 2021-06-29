@@ -72,3 +72,10 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 27/06
 + Continued to solve the task#3 (tg-bot)
+
+## 28/06
++ Continued to solve the task#3 (tg-bot).
++ Another lecture from Andersen Lab took place
+
+## 29/06
++ Telegram bot completed and posted to EC2-instance
