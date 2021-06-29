@@ -35,7 +35,8 @@ Please note that the username for a bot must always contain the word bot at the 
 
     go build app.go
 
-4. Edit config.json with your github user, github repo and Telegram bot Token.  
+4. Edit config.json with your github user, github repo and Telegram bot Token:  
+
 {  
     "Name": "username",  
     "Reponame": "repository_name",  
