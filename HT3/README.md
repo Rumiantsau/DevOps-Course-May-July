@@ -24,16 +24,16 @@
 - You need to install the Telegram app on your phone or computer. You can download the application;
 - Add a bot named BotFather to our contact list
 - We start the procedure of "communication" with the bot by pressing the Start button. 
-- In order to create a new bot, you need to run the command / newbot and follow the instructions. 
+- In order to create a new bot, you need to run the command / newbot and follow the instructions.  
 Please note that the username for a bot must always contain the word bot at the end. For example, DjangoBot or Django_bot.
 
-2. Clone this repository. Check all requiret modules are installed. If not, install them:
+2. Clone this repository. Check all requiret modules are installed. If not, install them:  
 
-go get github.com/Syfaro/telegram-bot-api
+ go get github.com/Syfaro/telegram-bot-api
 
-3. Compile app with next command:
+3. Compile app with next command:  
 
-go build app.go
+ go build app.go
 
 4. Edit config.json with your github user, github repo and Telegram bot Token.
 {
@@ -46,7 +46,7 @@ go build app.go
 
 go run app.go
 
-Usage
+## Usage
 
 This bot implements 5 commands:
  - /start  - welcom message and implemented commands;
