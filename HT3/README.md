@@ -29,11 +29,11 @@ Please note that the username for a bot must always contain the word bot at the 
 
 2. Clone this repository. Check all requiret modules are installed. If not, install them:  
 
- go get github.com/Syfaro/telegram-bot-api
+    go get github.com/Syfaro/telegram-bot-api
 
 3. Compile app with next command:  
 
- go build app.go
+    go build app.go
 
 4. Edit config.json with your github user, github repo and Telegram bot Token.
 {
@@ -44,7 +44,7 @@ Please note that the username for a bot must always contain the word bot at the 
 
 5. Run tgbot and enjoy!
 
-go run app.go
+    go run app.go
 
 ## Usage
 
