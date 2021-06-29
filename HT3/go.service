@@ -1,0 +1,13 @@
+[Unit]
+Description=Go webapp Daemon
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+
+WorkingDirectory=/home/ubuntu/go/src/tgbot
+ExecStart=/home/ubuntu/go/src/tgbot/app
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target
