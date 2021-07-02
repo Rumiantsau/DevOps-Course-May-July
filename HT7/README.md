@@ -7,7 +7,7 @@
 4. Additionally add the option to fill the selected snapshots into s3.
 5. You can come up with your own use case.
 
-### Write an AWS CloudFormation template for a chart.
+### Implementation...
 1. aws ec2 describe-snapshots \
     --owner-ids self \
     --query "Snapshots[*].{ID:SnapshotId,Time:StartTime}"
