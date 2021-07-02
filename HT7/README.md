@@ -8,6 +8,9 @@
 5. You can come up with your own use case.
 
 ### Implementation...
+1. Unstalling the AWS CLI VERSION 2 on Linux by link (https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html) 
+
+Usaged commands:
 1. aws ec2 describe-snapshots \
     --owner-ids self \
     --query "Snapshots[*].{ID:SnapshotId,Time:StartTime}"
