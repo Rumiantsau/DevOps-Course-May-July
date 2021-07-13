@@ -1,4 +1,4 @@
-## Task#7: Optional homework (AWS CLI). Deadline - 12/07/2021
+## Task#7: Optional homework (AWS CLI). Deadline - 19/07/2021
 
 ### Write a script in bash/powershell using either aws cli or powershell:
 1. Collect the list of EBS SnapshotIDs and the corresponding StartTime value.

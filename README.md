@@ -65,3 +65,11 @@ Additional challenge:
 - Write a wrapper script and add the ability to run different Envs with different parameters
 
 ![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/HT6/2021-06-23_16-03-10.png)
+
+## Task#7: Optional homework (AWS CLI). Deadline - 19/07/2021
+### Write a script in bash/powershell using either aws cli or powershell:
+1. Collect the list of EBS SnapshotIDs and the corresponding StartTime value.
+2. Show a list of snapshots older than N days/hours/minutes (as it is more convenient for testing) and their size.
+3. Additionally, you can add the option to filter snapshots by Tag: Value using the parameter and display the same information.
+4. Additionally add the option to fill the selected snapshots into s3.
+5. You can come up with your own use case.

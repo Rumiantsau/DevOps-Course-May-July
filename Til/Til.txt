@@ -81,10 +81,32 @@ Google Cloud Deployment Manager (in a cloud context)".
 + Telegram bot completed and posted to EC2-instance
 
 ## 30/06
-+ I listened to another lecture - Basiс Cloud management tools (awscli, Azure PowerShell, Google console...)
++ I listened to another lecture - "Basiс Cloud management tools (awscli, Azure PowerShell, Google console...)"
 
 ## 01/07
 + Was on a business trip in the city of Mogilev
 
 ## 02/07
 + Started doing optional AWS CLI assignment
+
+## 05/07
++ I listened to another lecture - "Network  Practice for Tshoot, hands on for network tools   
+(Linux/Win) netstat, mitmproxy, fiddler/developer console"
+
+## 06/07
++ Was very hard workday
+
+## 07/07
++ Was very hard workday
+
+## 08/07
++ Was very hard workday
+
+## 09/07
++ Continue to work on the AWS CLI task with bash
+
+## 12/07
++ I listened to another lecture - "Experience at Andersen"
+
+## 13/07
++ Continue to work on the AWS CLI task with bash
