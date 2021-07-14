@@ -110,3 +110,6 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 13/07
 + Continue to work on the AWS CLI task with bash
+
+## 14/07
++ I listened to another lecture - "Databases part 1"
