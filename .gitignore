@@ -1,5 +1,12 @@
 #*.pub
 #*.pem
+
+# terraform
+KEY
+KEY.pub
+.terraform
+.terraform*
+terraform.tfvars
 # Compiled source #
 ###################
 *.com

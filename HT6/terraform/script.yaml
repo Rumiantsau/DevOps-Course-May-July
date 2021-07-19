@@ -1,0 +1,11 @@
+#cloud-config
+# -*- YAML -*-
+
+runcmd:
+  - |
+    yum update -y 1>/bin/null
+    amazon-linux-extras install nginx1 -y
+  - |
+    systemctl daemon-reload
+    systemctl enable nginx
+    systemctl start nginx
