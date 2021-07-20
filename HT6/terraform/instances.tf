@@ -58,7 +58,7 @@ resource "aws_instance" "rumiantsau_environment_bastion_instance" {
   vpc_security_group_ids      = [aws_security_group.rumiantsau_environment_external_ssh_access.id]
   key_name                    = aws_key_pair.rumiantsau_environment_key_pair.id
   lifecycle {
-    prevent_destroy           = "true"
+    prevent_destroy           = "false"
   }
   depends_on                  = [aws_security_group.rumiantsau_environment_external_ssh_access]
   tags               = merge (
@@ -72,7 +72,7 @@ resource "aws_instance" "rumiantsau_environment_empty_instance" {
   count                       = 2
   ami                         = data.aws_ami.env_instance.id
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.rumiantsau_environment_private_subnets[0].id
+  subnet_id                   = element(aws_subnet.rumiantsau_environment_private_subnets.*.id, count.index)
   vpc_security_group_ids      = [aws_security_group.rumiantsau_environment_internal_ssh_access.id, aws_security_group.rumiantsau_environment_web_access.id]
   key_name                    = aws_key_pair.rumiantsau_environment_key_pair.id
   iam_instance_profile        = aws_iam_instance_profile.access_ec2_to_s3.name

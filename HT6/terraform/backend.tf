@@ -7,8 +7,6 @@ terraform {
     region         = "us-east-1"
     dynamodb_table = "rumiantsau-training-terraform-locks"
     encrypt        = true
-    # role_arn       = "arn:aws:iam::242906888793:role/AWS_Sandbox"
-    # session_name   = "AWS_Sandbox"
   }
 }
 

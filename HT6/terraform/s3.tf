@@ -62,6 +62,8 @@ resource "aws_iam_policy_attachment" "attach_policy_to_role" {
 
 resource "aws_s3_bucket" "bucket_for_file" {
   bucket = "rumiantsau-bucket-for-file"
+  acl    = "public-read"
+  # policy = file("policy.json")
   versioning {
     enabled = true
   }
@@ -86,4 +88,31 @@ resource "aws_s3_bucket" "bucket_for_file" {
                   tags               = merge (
                     {"Name" = "rumiantsau-s3"}, local.tags
                           ) 
+}
+
+resource "aws_s3_bucket_policy" "bucket_for_file" {
+  bucket = aws_s3_bucket.bucket_for_file.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression's result to valid JSON syntax.
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Id": "http custom auth secret",
+    "Statement": [
+        {
+            "Sid": "Allow requests with my secret.",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::${aws_s3_bucket.bucket_for_file.bucket}/*",
+            "Condition": {
+                "StringLike": {
+                    "aws:UserAgent": [
+                        "xxxyyyzzz"
+                    ]
+                }
+            }
+        }
+    ]
+  })
 }
