@@ -113,3 +113,15 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 14/07
 + I listened to another lecture - "Databases part 1"
+
+## 15/07
++ Implementing HT6
+
+## 16/07
++ Implementing HT6
+
+## 19/07
++ Implementing HT6
+
+## 20/07
++ Implementing HT6
