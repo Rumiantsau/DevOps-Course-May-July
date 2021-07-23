@@ -125,3 +125,12 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 20/07
 + Implementing HT6
+
+## 21/07
++ I listened to another lecture - "Databases part 2"   
+
+## 22/07
++ Analizing exam task
+
+## 23/07
++ Implementing exam samples
