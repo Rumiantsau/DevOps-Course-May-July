@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  variables:
+      PROJECT_REPO: "371990491100.dkr.ecr.us-east-1.amazonaws.com/rumiantsau-ecs-go"
+      BUILD_VERSION: "latest"
+      REPO_BRANCH: "master" 
+  parameter-store:
+      DOCKER_PASSWORD: "/ecs/DOCKER_PASSWORD"
+      DOCKER_USERNAME: "/ecs/DOCKER_USERNAME"
+  exported-variables:
+      - PROJECT_REPO
+      - BUILD_VERSION
+      - REPO_BRANCH
+      - DOCKER_PASSWORD
+      - DOCKER_USERNAME
+phases:
+  install:
+    runtime-versions:
+       docker: 19
+  pre_build:
+    commands:
+       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+       - IMAGE_TAG=$REPO_BRANCH-$BUILD_VERSION
+  build:
+    commands:
+       - echo Build started on date
+       - docker build -t $PROJECT_REPO:$IMAGE_TAG .
+       - docker tag $PROJECT_REPO:$IMAGE_TAG $PROJECT_REPO:$COMMIT_HASH
+  post_build:
+    commands:
+       - docker push $PROJECT_REPO:$IMAGE_TAG
+       - docker push $PROJECT_REPO:$COMMIT_HASH
+       - printf '[{"name":"rumiantsau-ecs-go","imageUri":"%s"}]' $PROJECT_REPO:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
