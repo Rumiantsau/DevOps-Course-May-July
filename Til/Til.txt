@@ -134,3 +134,9 @@ Google Cloud Deployment Manager (in a cloud context)".
 
 ## 23/07
 + Implementing exam samples
+
+## 26/07
++ Implementing exam task
+
+## 27/07
++ Implementing exam task
