@@ -8,4 +8,3 @@ Additional challenge:
 - Write a wrapper script and add the ability to run different Envs with different parameters
 
 ![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/HT6/2021-06-23_16-03-10.png)
-

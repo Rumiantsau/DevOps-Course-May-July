@@ -12,3 +12,9 @@ Link to go the repo Golang-app
 * build image "docker build -t rumiantsau-ecs-go . "
 * run container "docker run -d -p 8080:8080 --name rumiantsau-ecs-go rumiantsau-ecs-go:latest"
 Running application (http://rumiantsau-alb-go-603821001.us-east-1.elb.amazonaws.com:8080)
+
+## DIAGRAMS
+
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/b8dce596bfe14edd7166c934dca9dafc6f7536a9/Exam/2021-07-29_22-39-01.png)
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/Exam/2021-07-29_22-39-01.png)
+
