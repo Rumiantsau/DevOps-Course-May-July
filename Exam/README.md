@@ -15,6 +15,6 @@ Running application (http://rumiantsau-alb-go-603821001.us-east-1.elb.amazonaws.
 
 ## DIAGRAMS
 
-![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/b8dce596bfe14edd7166c934dca9dafc6f7536a9/Exam/2021-07-29_22-39-01.png)
-![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/Exam/2021-07-29_22-39-01.png)
-
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/Exam/2021-07-29_22-39-01.png)  
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/Exam/2021-07-29_22-38-28.png)  
+![Image alt](https://github.com/Rumiantsau/DevOps-Course-May-July/blob/main/Exam/2021-07-29_21-57-49.png)  
