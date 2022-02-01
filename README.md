@@ -1,7 +1,7 @@
 # DevOps-Course-May-July
 Andersen DevOps Course Summer 2021 by [Andersenlab](https://www.andersenlab.com/)
 
-## EXAM Task
+## EXAM Tasks
 ### Result
 Link to go the repo Python-add
 (https://github.com/Rumiantsau/rumiantsau-python)
